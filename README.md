@@ -29,19 +29,7 @@ Clone the repo using `git clone https://github.com/vindruid/flask_leaderboard.gi
 Then install the package with the version `pip install -r requirements.txt`
 
 ### Insert Master Key
-Put your key inside folder `master_key` with name  `public_key.csv` and `private_key.csv`
-<br>
-with column `data_id` and `prediction`
-<br>
-for example 
-```
-data_id,prediction
-1,5
-2,4
-3,4.1
-4,9
-5,6.8
-```
+Put your key inside folder `master_key` with name  `public_key.csv`. This version does not use `private_key.csv` since we don't use private leaderboard. PS: Both files are not public to users, only the name public reflects the data that is used to rank public leaderboard.
 
 ### Change Scoring Method
 open `main.py`
@@ -104,8 +92,7 @@ If you forget your password, please contact admin or register new account
 
 ### Submit
 Submission menu will be appeared if you already login <br>
-Choose your submission type (`public` or `private`) <br>
+Choose your submission type (`public` or `private`) <br> The default is public in this version
 Click choose file button and select your file then click upload
 
-Ensure your file extension is `.csv` and the file has 2 columns `data_id` & `prediction` with `data_id` according to admin instruction (should match with master key
 
