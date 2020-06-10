@@ -80,7 +80,7 @@ db.create_all()
 class MyAdminIndexView(AdminIndexView):
     def is_accessible(self):
         if current_user.is_authenticated:
-            return current_user.username == 'admin'
+            return current_user.username == 'admin@bshg.com'
         else:
             False
 
@@ -92,7 +92,7 @@ class UserView(ModelView):
 
     def is_accessible(self):
         if current_user.is_authenticated:
-            return current_user.username == 'admin'
+            return current_user.username == 'admin@bshg.com'
         else:
             False
     def inaccessible_callback(self, name, **kwargs):
@@ -103,7 +103,7 @@ class SubmissionView(ModelView):
 
     def is_accessible(self):
         if current_user.is_authenticated:
-            return current_user.username == 'admin'
+            return current_user.username == 'admin@bshg.com'
         else:
             False
 
@@ -156,13 +156,17 @@ def register_page():
             user = User.query.filter_by(username=reg_form.username.data).first()
             print(user)
             if user is None: # only when user is not registered then proceed
-                print("HALOOO")
-                u = User(username=reg_form.username.data, password = reg_form.password.data)
-                db.session.add(u)
-                db.session.commit()
-                # flash('Congratulations, you are now a registered user!')
-                registration_status = f"Welcome {reg_form.username.data}, Please Login at HOME page"
-                return redirect(url_for('register_page', registration_status = registration_status))
+                if reg_form.username.data.endswith('@bshg.com'): # only proceed if it is a bshg mail
+                    print("HALOOO")
+                    u = User(username=reg_form.username.data, password = reg_form.password.data)
+                    db.session.add(u)
+                    db.session.commit()
+                    # flash('Congratulations, you are now a registered user!')
+                    registration_status = f"Welcome {reg_form.username.data}, Please Login at HOME page"
+                    return redirect(url_for('register_page', registration_status = registration_status))
+                else:
+                    registration_status = "PLEASE USE A @BSHG.COM MAIL TO REGISTER"
+                    return redirect(url_for('register_page', registration_status = registration_status)) 
             else:
                 registration_status = "USER NAME ALREADY USED"
                 return redirect(url_for('register_page', registration_status = registration_status))
