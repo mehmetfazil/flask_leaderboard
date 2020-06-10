@@ -1,12 +1,22 @@
-Put your key with name  `public_key.csv` and `private_key.csv`
-with column `data_id` and `prediction`
+There are two files  `public_key.csv` and `private_key.csv`. There are two leaderboards, but we won't use private one.
 
-for example 
+Put your answers to score submissions in `public_key.csv`
+
+## Examples
+
+Calculate Pi, example `public_key.csv`
 ```
-data_id,prediction
-1,5
-2,4
-3,4.1
-4,9
-5,6.8
+3.14159265359
 ```
+
+Forecast next weeks temperature
+```
+23
+21
+20
+23
+22
+22
+12
+```
+
